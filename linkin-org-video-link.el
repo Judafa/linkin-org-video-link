@@ -80,4 +80,4 @@ path can also be a youtube url."
 (let ((inhibit-message t)) ;; dont print messages while loading the package
   (org-add-link-type "video" 'org-video-open nil))
 
-(provide 'linkin-org-video-link-type)
+(provide 'linkin-org-video-link)
