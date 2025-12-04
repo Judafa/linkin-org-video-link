@@ -63,8 +63,14 @@ path can also be a youtube url."
       (cond
        ;; if its an url
        ((linkin-org-is-url video-address)
-	    (progn
-	      (start-process "mpv" nil "mpv" "--force-window" "--ytdl=no" (format "--start=%s" timestamp) video-address)))
+	(progn
+	  (start-process "mpv" nil "mpv"
+			 "--force-window"
+			 ;; "--ytdl=no"
+			 "--ytdl-format=best"
+			 (format "--start=%s" timestamp)
+			 video-address)
+	  ))
        ;; if it's a local file
        ;; ((linkin-org-is-link-path-correct video-address)
        ((linkin-org-resolve-file video-address)
