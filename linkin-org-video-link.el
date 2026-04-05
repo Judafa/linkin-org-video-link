@@ -67,16 +67,20 @@ path can also be a youtube url."
 	  (start-process "mpv" nil "mpv"
 			 "--force-window"
 			 ;; "--ytdl=no"
-			 "--ytdl-format=best"
+			 "--ytdl-format=ytdl"
+			 ;; "--ytdl-format=best"
 			 (format "--start=%s" timestamp)
 			 video-address)
 	  ))
        ;; if it's a local file
        ;; ((linkin-org-is-link-path-correct video-address)
-       ((linkin-org-resolve-file video-address)
+       ((linkin-org-resolve-path video-address)
 	    (progn
+	      (message video-address)
 	      (message "Playing %s at %s" video-address timestamp)
-	      (start-process "mpv" nil "mpv" (format "--start=%s" timestamp) video-address)))
+	      (start-process "mpv" nil "mpv"
+			     "--force-window"
+			     (format "--start=%s" timestamp) video-address)))
        (t
 	    (message "Not a valid video file or url"))))))
 
